@@ -1,0 +1,27 @@
+
+
+def neighbors(matrix, node):
+    index = 0
+    neighbors = []
+    for num in matrix[node]:
+        if num == 1:
+            neighbors.append(index)
+        index +=1
+    return neighbors
+
+def neighbors_of_neighbors(matrix,node):
+    final_neighbors = []
+    initial_neighbors = neighbors(matrix, node)
+    for neighbor in initial_neighbors:
+        curr_neighbor = neighbors(matrix, neighbor)
+        for num in curr_neighbor:
+            final_neighbors.append(num)
+    return list(set(final_neighbors))
+# Test Code
+matrix = [[0,0,1,1],
+          [0,0,1,1],
+          [1,1,0,1],
+          [1,1,1,0]]
+
+
+print(neighbors_of_neighbors(matrix, 2))
